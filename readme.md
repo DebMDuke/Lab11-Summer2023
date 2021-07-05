@@ -13,8 +13,7 @@ The vertices are labeled as 0, 1, …, n−1.
 Each subsequent line, with the format originVertex destVertex1 destVertex 2 …, describes edges (originVertex, destVertex 1), (originVertex, destVertex 2), and so on.
 
 Here are examples of two files for their corresponding graphs:
-![Image of sample file contents and corresponding graphs]
-(Sample%20Input%20Files.png)
+![Image of sample file contents and corresponding graphs](SampleInputFiles.png)
 
 To the UnweightedGraph class, implement the following methods:
 
