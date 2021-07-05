@@ -145,6 +145,64 @@ public class UnweightedGraph<V> implements Graph<V> {
 		return addEdge(new Edge(u, v));
 	}
 
+	@Override /** Obtain a DFS tree starting from vertex v */
+  public SearchTree dfs(int v) {
+    List<Integer> searchOrder = new ArrayList<>();
+    int[] parent = new int[vertices.size()];
+    for (int i = 0; i < parent.length; i++)
+      parent[i] = -1; // Initialize parent[i] to -1
+
+    // Mark visited vertices
+    boolean[] isVisited = new boolean[vertices.size()];
+
+    // Recursively search
+    dfs(v, parent, searchOrder, isVisited);
+
+    // Return a search tree
+    return new SearchTree(v, parent, searchOrder);
+  }
+
+  /** Recursive method for DFS search */
+  private void dfs(int v, int[] parent, List<Integer> searchOrder, boolean[] isVisited) {
+    // Store the visited vertex
+    searchOrder.add(v);
+    isVisited[v] = true; // Vertex v visited
+
+    for (Edge e : neighbors.get(v)) { // Note that e.u is v
+      if (!isVisited[e.vertex2]) { // e.v is w in Listing 28.8
+        parent[e.vertex2] = v; // The parent of w is v
+        dfs(e.vertex2, parent, searchOrder, isVisited); // Recursive search
+      }
+    }
+  }
+
+  @Override /** Starting bfs search from vertex v */
+  public SearchTree bfs(int v) {
+    List<Integer> searchOrder = new ArrayList<>();
+    int[] parent = new int[vertices.size()];
+    for (int i = 0; i < parent.length; i++)
+      parent[i] = -1; // Initialize parent[i] to -1
+
+    java.util.LinkedList<Integer> queue =
+      new java.util.LinkedList<>(); // list used as a queue
+    boolean[] isVisited = new boolean[vertices.size()];
+    queue.offer(v); // Enqueue v
+    isVisited[v] = true; // Mark it visited
+
+    while (!queue.isEmpty()) {
+      int u = queue.poll(); // Dequeue to u
+      searchOrder.add(u); // u searched
+      for (Edge e: neighbors.get(u)) { // Note that e.u is u
+        if (!isVisited[e.vertex2]) { // e.v is w in Listing 28.11
+          queue.offer(e.vertex2); // Enqueue w
+          parent[e.vertex2] = u; // The parent of w is u
+          isVisited[e.vertex2] = true; // Mark w visited
+        }
+      }
+    }
+
+    return new SearchTree(v, parent, searchOrder);
+  }
 	
 	/** SearchTree inner class inside the UnweightedGraph class */
 	public class SearchTree {
