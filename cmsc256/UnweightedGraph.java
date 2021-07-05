@@ -38,7 +38,7 @@ public class UnweightedGraph<V> implements Graph<V> {
 	/** Construct a graph from integer vertices 0, 1, and edge array */
 	public UnweightedGraph(int[][] edges, int numberOfVertices) {
 		for (int i = 0; i < numberOfVertices; i++) 
-			addVertex((V)(new Integer(i))); // vertices is {0, 1, ...}
+			addVertex((V)(Integer.valueOf(i))); // vertices is {0, 1, ...}
 
 		createAdjacencyLists(edges, numberOfVertices);
 	}
@@ -281,7 +281,92 @@ public class UnweightedGraph<V> implements Graph<V> {
 	}
 	/*  End implementation of inner SearchTree class */
 
+/*  Lab methods to be implemented	*/
+	public static UnweightedGraph<Integer> graphFromFile(String fileName) throws FileNotFoundException{
+		return null;
+	}
 
+	public boolean isComplete() {
+		return true;
+	}
+	
+	public boolean areAdjacent(V origin, V destination) {
+		return true;
+	}
+	
+	@Override /** Obtain a DFS tree starting from vertex v */
+	public SearchTree getDepthFirstSearchTree(int startingVertex) {
+		// create a List to hold the search order of the vertices as they are visited
+
+		// create an array to store the parent vertex during search
+
+		// initially parent vertex is unknown, so initialize the array to -1
+		
+
+		// create an array to store visited status for each vertex (marked true when visited)
+
+		// Recursively search beginning with this startingVertex, passing in arrays & searchList
+
+		// Return a search tree created with the startingVertex, parent array, search order list, and isVisited array
+		return null;
+	}
+
+	 @SuppressWarnings("unused")
+	private void dfs(int vertex, int[] parent, List<Integer> searchOrder, boolean[] isVisited) {
+		 // Add the visited vertex to the searchOrder list
+		 
+		 // Mark vertex as visited 
+		 
+		 // Get the list of neighbors for this vertex
+		// For each edge in the neighbors list
+			// if the destination vertex for this edge is not visited
+				// set the destination vertex's parent vertex to the method argument vertex
+				// recursively call dfs passing in the destination vertex, parent array, search order list and isVisited array
+	 }
+	
+	
+	 
+	@Override /** Obtain a BFS search tree starting from vertex v */
+	public SearchTree getBreadthFirstSearchTree(int vertex) {
+		// create a List to hold the search order of the vertices as they are visited
+
+		// create an array to store the parent vertex during search
+
+		// initially parent vertex is unknown, so initialize the array to -1
+		
+
+		// create an array to store visited status for each vertex (marked true when visited)
+		
+		// create an empty queue for storing vertices to be visited
+		
+//		  add vertex into the queue;
+//		  mark vertex visited;
+		
+//		  while the queue is not empty 
+//		    dequeue a vertex, say u, from the queue
+//		    mark u visited and add to the search order List
+		
+//		    for each neighbor, called w, of u
+//		      if w has not been visited 
+//		        add w into the queue;
+//		        set u as the parent for w; 
+//		        mark w visited;
+
+		// return the SearchTree created from the argument vertex, parent array, and search order List
+		return null;
+	}
+	
+	public boolean isConnected() {
+		return true;
+	}
+	
+	public List<Integer> getSortestPath(int u, int v){
+		return null;
+	}
+	
+	public boolean hasCycle() {
+		return true;
+	}
 
 }
 
