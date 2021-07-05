@@ -322,7 +322,7 @@ public class UnweightedGraph<V> implements Graph<V> {
 	 * @return		A List containing the shortest path from 
 	 * 			the origin vertex to the destination vertex
 	 */
-	public List<Integer> getSortestPath(int u, int v){
+	public List<Integer> getShortestPath(int u, int v){
 		return null;
 	}
 	
