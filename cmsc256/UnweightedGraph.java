@@ -218,15 +218,31 @@ public class UnweightedGraph<V> implements Graph<V> {
 	}
 	/*  End implementation of inner SearchTree class */
 
-/*  Lab methods to be implemented	*/
+        /*  Lab methods to be implemented	*/
+	
+	/**
+	 * Reads the input file to extract the graph data
+	 * @param file          The String name of the file
+	 * @return              UnweightedGraph of data from the File
+	 * @throws FileNotFoundException, NumberFormatException
+	 */
 	public static UnweightedGraph<Integer> graphFromFile(String fileName) throws FileNotFoundException{
 		return null;
 	}
 
+	/**
+	 * @return 		true if this graph is complete
+	 */
 	public boolean isComplete() {
 		return true;
 	}
 	
+	/**
+	 * @param origin 	the origin vertex
+	 * @param destination	the destination vertex
+	 * @return 		true if the destination vertex is adjacent 
+	 * 			to the origin vertex; false otherwise
+	 */
 	public boolean areAdjacent(V origin, V destination) {
 		return true;
 	}
@@ -293,14 +309,26 @@ public class UnweightedGraph<V> implements Graph<V> {
 		return null;
 	}
 	
+	/**
+	 * @return 	true if this graph is connected
+	 */
 	public boolean isConnected() {
 		return true;
 	}
 	
+	/**
+	 * @param origin	the origin vertex
+	 * @param destination	the destination vertex
+	 * @return		A List containing the shortest path from 
+	 * 			the origin vertex to the destination vertex
+	 */
 	public List<Integer> getSortestPath(int u, int v){
 		return null;
 	}
 	
+	/**
+	 * @return 	true if this graph has a cycle
+	 */
 	public boolean hasCycle() {
 		return true;
 	}
