@@ -4,16 +4,15 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class UnweightedGraph<V> implements Graph<V> {
-	protected List<V> vertices = new ArrayList<>(); // Store vertices
-	protected List<List<Edge>> neighbors 
-	= new ArrayList<>(); // Adjacency lists
+	private List<V> vertices = new ArrayList<>(); // Store vertices
+	private List<List<Edge>> neighbors = new ArrayList<>(); // Adjacency lists
 
 	/** Construct an empty graph */
-	protected UnweightedGraph() {
+	public UnweightedGraph() {
 	}
 
 	/** Construct a graph from vertices and edges stored in arrays */
-	protected UnweightedGraph(V[] vertices, int[][] edges) {
+	public UnweightedGraph(V[] vertices, int[][] edges) {
 		for (int i = 0; i < vertices.length; i++)
 			addVertex(vertices[i]);
 
@@ -21,7 +20,7 @@ public class UnweightedGraph<V> implements Graph<V> {
 	}
 
 	/** Construct a graph from vertices and edges stored in List */
-	protected UnweightedGraph(List<V> vertices, List<Edge> edges) {
+	public UnweightedGraph(List<V> vertices, List<Edge> edges) {
 		for (int i = 0; i < vertices.size(); i++)
 			addVertex(vertices.get(i));
 
@@ -29,7 +28,7 @@ public class UnweightedGraph<V> implements Graph<V> {
 	}
 
 	/** Construct a graph for integer vertices 0, 1, 2 and edge list */
-	protected UnweightedGraph(List<Edge> edges, int numberOfVertices) {
+	public UnweightedGraph(List<Edge> edges, int numberOfVertices) {
 		for (int i = 0; i < numberOfVertices; i++) 
 			addVertex((V)(Integer.valueOf(i))); // vertices is {0, 1, ...}
 
@@ -37,7 +36,7 @@ public class UnweightedGraph<V> implements Graph<V> {
 	}
 
 	/** Construct a graph from integer vertices 0, 1, and edge array */
-	protected UnweightedGraph(int[][] edges, int numberOfVertices) {
+	public UnweightedGraph(int[][] edges, int numberOfVertices) {
 		for (int i = 0; i < numberOfVertices; i++) 
 			addVertex((V)(new Integer(i))); // vertices is {0, 1, ...}
 
