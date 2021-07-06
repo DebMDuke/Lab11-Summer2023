@@ -281,7 +281,7 @@ public class UnweightedGraph<V> implements Graph<V> {
 	
 	/**
 	 * Reads the input file to extract the graph data
-	 * @param file          The String name of the file
+	 * @param filename      The String name of the file
 	 * @return              UnweightedGraph of data from the File
 	 * @throws FileNotFoundException, NumberFormatException
 	 */
