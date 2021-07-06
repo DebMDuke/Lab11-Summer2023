@@ -145,64 +145,65 @@ public class UnweightedGraph<V> implements Graph<V> {
 		return addEdge(new Edge(u, v));
 	}
 
-	@Override /** Obtain a DFS tree starting from vertex v */
-  public SearchTree dfs(int v) {
-    List<Integer> searchOrder = new ArrayList<>();
-    int[] parent = new int[vertices.size()];
-    for (int i = 0; i < parent.length; i++)
-      parent[i] = -1; // Initialize parent[i] to -1
+@Override /** Obtain a DFS tree starting from vertex v */
+	public SearchTree getDepthFirstSearchTree(int startingVertex) {
+		List<Integer> searchOrder = new ArrayList<>();
+		int[] parent = new int[vertices.size()];
+		for (int i = 0; i < parent.length; i++)
+			parent[i] = -1; // Initialize parent[i] to -1
 
-    // Mark visited vertices
-    boolean[] isVisited = new boolean[vertices.size()];
+		// Mark visited vertices
+		boolean[] isVisited = new boolean[vertices.size()];
 
-    // Recursively search
-    dfs(v, parent, searchOrder, isVisited);
+		// Recursively search
+		dfs(startingVertex, parent, searchOrder, isVisited);
 
-    // Return a search tree
-    return new SearchTree(v, parent, searchOrder);
-  }
+		// Return a search tree
+		return new SearchTree(startingVertex, parent, searchOrder);
+	}
 
-  /** Recursive method for DFS search */
-  private void dfs(int v, int[] parent, List<Integer> searchOrder, boolean[] isVisited) {
-    // Store the visited vertex
-    searchOrder.add(v);
-    isVisited[v] = true; // Vertex v visited
+	/** Recursive method for DFS search */
+	private void dfs(int v, int[] parent, List<Integer> searchOrder, boolean[] isVisited) {
+		// Store the visited vertex
+		searchOrder.add(v);
+		isVisited[v] = true; // Vertex v visited
 
-    for (Edge e : neighbors.get(v)) { // Note that e.u is v
-      if (!isVisited[e.vertex2]) { // e.v is w in Listing 28.8
-        parent[e.vertex2] = v; // The parent of w is v
-        dfs(e.vertex2, parent, searchOrder, isVisited); // Recursive search
-      }
-    }
-  }
+		for (Edge e : neighbors.get(v)) { // Note that e.u is v
+			if (!isVisited[e.getDestinationVertex()]) { // e.v is w in Listing 28.8
+				parent[e.getDestinationVertex()] = v; // The parent of w is v
+				dfs(e.getDestinationVertex(), parent, searchOrder, isVisited); // Recursive search
+			}
+		}
+	}
 
-  @Override /** Starting bfs search from vertex v */
-  public SearchTree bfs(int v) {
-    List<Integer> searchOrder = new ArrayList<>();
-    int[] parent = new int[vertices.size()];
-    for (int i = 0; i < parent.length; i++)
-      parent[i] = -1; // Initialize parent[i] to -1
+	@Override /** Starting bfs search from vertex v */
+	public SearchTree getBreadthFirstSearchTree(int vertex) {
+		List<Integer> searchOrder = new ArrayList<>();
+		int[] parent = new int[vertices.size()];
+		for (int i = 0; i < parent.length; i++)
+			parent[i] = -1; // Initialize parent[i] to -1
 
-    java.util.LinkedList<Integer> queue =
-      new java.util.LinkedList<>(); // list used as a queue
-    boolean[] isVisited = new boolean[vertices.size()];
-    queue.offer(v); // Enqueue v
-    isVisited[v] = true; // Mark it visited
+		// list used as a queue
+		java.util.LinkedList<Integer> queue = new java.util.LinkedList<>(); 
+		boolean[] isVisited = new boolean[vertices.size()];
+		queue.offer(vertex); 		// Enqueue vertex
+		isVisited[vertex] = true; 	// Mark it visited
 
-    while (!queue.isEmpty()) {
-      int u = queue.poll(); // Dequeue to u
-      searchOrder.add(u); // u searched
-      for (Edge e: neighbors.get(u)) { // Note that e.u is u
-        if (!isVisited[e.vertex2]) { // e.v is w in Listing 28.11
-          queue.offer(e.vertex2); // Enqueue w
-          parent[e.vertex2] = u; // The parent of w is u
-          isVisited[e.vertex2] = true; // Mark w visited
-        }
-      }
-    }
+		while (!queue.isEmpty()) {
+			int u = queue.poll(); 	// Dequeue to u
+			searchOrder.add(u); 		// u searched
+			for (Edge e: neighbors.get(u)) { // Note that e.u is u
+				if (!isVisited[e.getDestinationVertex()]) { 
+					queue.offer(e.getDestinationVertex()); 		// Enqueue w
+					parent[e.getDestinationVertex()] = u; 		// The parent of w is u
+					isVisited[e.getDestinationVertex()] = true; 	// Mark w visited
+				}
+			}
+		}
 
-    return new SearchTree(v, parent, searchOrder);
-  }
+		return new SearchTree(vertex, parent, searchOrder);
+	}
+	
 	
 	/** SearchTree inner class inside the UnweightedGraph class */
 	public class SearchTree {
@@ -301,70 +302,8 @@ public class UnweightedGraph<V> implements Graph<V> {
 	 * @return 		true if the destination vertex is adjacent 
 	 * 			to the origin vertex; false otherwise
 	 */
-	public boolean areAdjacent(V origin, V destination) {
+	public boolean areAdjacent(int origin, int destination) {
 		return true;
-	}
-	
-	@Override /** Obtain a DFS tree starting from vertex v */
-	public SearchTree getDepthFirstSearchTree(int startingVertex) {
-		// create a List to hold the search order of the vertices as they are visited
-
-		// create an array to store the parent vertex during search
-
-		// initially parent vertex is unknown, so initialize the array to -1
-		
-
-		// create an array to store visited status for each vertex (marked true when visited)
-
-		// Recursively search beginning with this startingVertex, passing in arrays & searchList
-
-		// Return a search tree created with the startingVertex, parent array, search order list, and isVisited array
-		return null;
-	}
-
-	 @SuppressWarnings("unused")
-	private void dfs(int vertex, int[] parent, List<Integer> searchOrder, boolean[] isVisited) {
-		 // Add the visited vertex to the searchOrder list
-		 
-		 // Mark vertex as visited 
-		 
-		 // Get the list of neighbors for this vertex
-		// For each edge in the neighbors list
-			// if the destination vertex for this edge is not visited
-				// set the destination vertex's parent vertex to the method argument vertex
-				// recursively call dfs passing in the destination vertex, parent array, search order list and isVisited array
-	 }
-	
-	
-	 
-	@Override /** Obtain a BFS search tree starting from vertex v */
-	public SearchTree getBreadthFirstSearchTree(int vertex) {
-		// create a List to hold the search order of the vertices as they are visited
-
-		// create an array to store the parent vertex during search
-
-		// initially parent vertex is unknown, so initialize the array to -1
-		
-
-		// create an array to store visited status for each vertex (marked true when visited)
-		
-		// create an empty queue for storing vertices to be visited
-		
-//		  add vertex into the queue;
-//		  mark vertex visited;
-		
-//		  while the queue is not empty 
-//		    dequeue a vertex, say u, from the queue
-//		    mark u visited and add to the search order List
-		
-//		    for each neighbor, called w, of u
-//		      if w has not been visited 
-//		        add w into the queue;
-//		        set u as the parent for w; 
-//		        mark w visited;
-
-		// return the SearchTree created from the argument vertex, parent array, and search order List
-		return null;
 	}
 	
 	/**
@@ -380,7 +319,7 @@ public class UnweightedGraph<V> implements Graph<V> {
 	 * @return		A List containing the shortest path from 
 	 * 			the origin vertex to the destination vertex
 	 */
-	public List<Integer> getShortestPath(int u, int v){
+	public List<Integer> getShortestPath(int origin, int destination){
 		return null;
 	}
 	
