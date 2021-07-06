@@ -312,23 +312,24 @@ public class UnweightedGraph<V> implements Graph<V> {
 	public boolean isConnected() {
 		return true;
 	}
-	
-	/**
-	 * @param origin	the origin vertex
-	 * @param destination	the destination vertex
-	 * @return		A List containing the shortest path from 
-	 * 			the origin vertex to the destination vertex
-	 */
-	public List<Integer> getShortestPath(int origin, int destination){
-		return null;
-	}
-	
+
 	/**
 	 * @return 	true if this graph has a cycle
 	 */
 	public boolean hasCycle() {
 		return true;
 	}
+	/**
+	 * @param origin	the origin vertex
+	 * @param destination	the destination vertex
+	 * @return		A List containing the shortest path from 
+	 * 			the origin vertex to the destination vertex
+	 */
+	public List<V> getShortestPath(int origin, int destination){
+		return null;
+	}
+	
+
 
 }
 
